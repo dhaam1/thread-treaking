@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, MessageCircle, Share2, TrendingUp, ExternalLink } from 'lucide-react';
+import { Heart, MessageCircle, ExternalLink } from 'lucide-react';
 
 interface ThreadPost {
   id: string;

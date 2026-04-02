@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { Target, Search, BarChart3, Presentation } from 'lucide-react';
 
-const HeroVariantC: React.FC = () => {
+interface HeroVariantCProps {
+  onSearch?: (url: string) => void;
+}
+
+const HeroVariantC: React.FC<HeroVariantCProps> = ({ onSearch }) => {
   const [url, setUrl] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (url.trim() && onSearch) {
+      onSearch(url.trim());
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-slate-50 flex items-center justify-center p-4 md:p-8 font-sans overflow-hidden">
@@ -27,7 +38,7 @@ const HeroVariantC: React.FC = () => {
             벤치마킹에 시간을 낭비하지 마세요. 경쟁사의 랜딩페이지 URL을 입력하면 카피라이팅, 색상, 레이아웃 등 모든 디자인 리소스를 분석해 데이터로 변환합니다.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 max-w-lg">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-slate-400" />
@@ -40,10 +51,10 @@ const HeroVariantC: React.FC = () => {
                 placeholder="https://competitor.com"
               />
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-blue-200 transition-all transform hover:-translate-y-0.5 whitespace-nowrap">
+            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-blue-200 transition-all transform hover:-translate-y-0.5 whitespace-nowrap">
               무료로 분석하기
             </button>
-          </div>
+          </form>
           <p className="text-sm text-slate-400 mt-4 ml-1">신용카드 없이 지금 바로 시작하세요.</p>
         </div>
 
