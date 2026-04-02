@@ -1,0 +1,13 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 바이럴 포스트 컬렉션에 대한 권한
+    match /viral_posts/{document=**} {
+      // 프론트엔드에서는 읽기(조회)만 허용
+      allow read: if true;
+      // 쓰기 및 삭제는 봇(백엔드/어드민)만 허용
+      allow write: if false; 
+    }
+  }
+}

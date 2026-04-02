@@ -1,0 +1,12 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "viral_posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "published_at", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
